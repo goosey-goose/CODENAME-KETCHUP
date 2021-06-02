@@ -86,7 +86,7 @@ router.post('/register', csrfProtection, userValidators,
   router.post('/login', csrfProtection, loginValidators,
   asyncHandler(async (req, res) => {
     const {
-      emailAddress,
+      email,
       password,
     } = req.body;
 
@@ -95,13 +95,31 @@ router.post('/register', csrfProtection, userValidators,
 
     if (validatorErrors.isEmpty()) {
       // TODO Attempt to login the user.
+      const user = await db.User.findOne({ where: { email } });
+
+      if (user !== null) {
+        // If the user exists then compare their password
+        // to the provided password.
+        const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+
+        if (passwordMatch) {
+          // If the password hashes match, then login the user
+          // and redirect them to the default route.
+          // TODO Login the user.
+          return res.redirect('/');
+        }
+      }
+
+      // Otherwise display an error message to the user.
+      errors.push('Login failed for the provided email address and password');
+
     } else {
       errors = validatorErrors.array().map((error) => error.msg);
     }
 
     res.render('user-login', {
       title: 'Login',
-      emailAddress,
+      email,
       errors,
       csrfToken: req.csrfToken(),
     });
