@@ -17,11 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     bio: {
       type: DataTypes.TEXT,
-      allowNull: false
     },
     profilePicLink: {
       type: DataTypes.TEXT,
-      allowNull: false
     }
   }, {});
   User.associate = function (models) {

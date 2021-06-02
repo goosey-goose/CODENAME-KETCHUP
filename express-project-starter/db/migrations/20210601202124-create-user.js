@@ -24,11 +24,9 @@ module.exports = {
       },
       bio: {
         type: Sequelize.TEXT,
-        allowNull: false
       },
       profilePicLink: {
         type: Sequelize.TEXT,
-        allowNull: false
       },
       createdAt: {
         allowNull: false,

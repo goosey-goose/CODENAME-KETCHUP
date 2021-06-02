@@ -4,13 +4,13 @@ const fs = require('fs');
 const db = require('./db/models'); //double check
 // const { Show } = db;
 
-const apiKey = `1e86b013`;
+const apiKey = `9ca2ac72`;
 
 const results = [];
 
-
 async function getShows(url) {
 	try {
+		// debugger
 		const response = await fetch(url);
 		const data = await response.json();
 		console.log(data); //CONSOLE LOG
@@ -43,8 +43,8 @@ async function getShows(url) {
 fs.createReadStream('series_urls.csv')
 	.pipe(csv())
 	.on('data', (data) => results.push(data))
-	.on('end', () => {
+	.on('end', async () => {
 		for (let i = 0; i < results.length; i++) {
-			getShows(`http://www.omdbapi.com/?i=${results[i].imdb_id}&plot=full&apikey=${apiKey}`)
+			await getShows(`http://www.omdbapi.com/?i=${results[i].imdb_id}&plot=full&apikey=${apiKey}`)
 		};
-	})
+	});
