@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     userName: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: TransformStreamDefaultController
+      unique: true
     },
     email: {
       type: DataTypes.STRING,
