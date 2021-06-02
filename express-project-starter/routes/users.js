@@ -1,10 +1,28 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
 
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
 const router = express.Router();
+
+const userValidators = [
+  check('userName')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for user name.'),
+  check('email')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for email address.')
+    .isEmail()
+    .withMessage('Email address is not a valid email.'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for password.'),
+  check('confirmPassword')
+    .exists({ checkFalsy: true })
+    .withMessage('Please confirm the password.')
+];
 
 router.get('/register', csrfProtection, (req, res) => {
   const user = db.User.build();
@@ -15,27 +33,25 @@ router.get('/register', csrfProtection, (req, res) => {
   });
 });
 
-const userValidators = [
-  // TODO Define the user validators.
-];
-
 router.post('/register', csrfProtection, userValidators,
   asyncHandler(async (req, res) => {
     const {
       email,
 			userName,
-			hashedPassword,
+			password,
     } = req.body;
 
     const user = db.User.build({
       email,
-			userName,
-			hashedPassword,
+			userName
     });
 
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.hashedPassword = hashedPassword;
+
       await user.save();
       res.redirect('/');
     } else {
@@ -48,6 +64,50 @@ router.post('/register', csrfProtection, userValidators,
       });
     }
   }));
+
+  const loginValidators = [
+    check('email')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a value for email address'),
+    check('password')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a value for password'),
+  ];
+
+  router.get('/login', csrfProtection, (req, res) => {
+    res.render('user-login', {
+      title: 'Login',
+      csrfToken: req.csrfToken(),
+    });
+  });
+
+
+
+  router.post('/login', csrfProtection, loginValidators,
+  asyncHandler(async (req, res) => {
+    const {
+      emailAddress,
+      password,
+    } = req.body;
+
+    let errors = [];
+    const validatorErrors = validationResult(req);
+
+    if (validatorErrors.isEmpty()) {
+      // TODO Attempt to login the user.
+    } else {
+      errors = validatorErrors.array().map((error) => error.msg);
+    }
+
+    res.render('user-login', {
+      title: 'Login',
+      emailAddress,
+      errors,
+      csrfToken: req.csrfToken(),
+    });
+  }));
+
+
 
 module.exports = router;
 
