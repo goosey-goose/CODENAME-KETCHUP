@@ -1,0 +1,65 @@
+'use strict';
+const faker = require("faker");
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.bulkInsert('WantToWatchLists', [
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+      { userId: faker.datatype.number({ "min": 1, "max": 10 }), showId: faker.datatype.number({ "min": 451, "max": 948 }), createdAt: new Date(), updatedAt: new Date() },
+    ], {});
+  },
+
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.bulkDelete('WantToWatchLists', null, {});
+  }
+};
