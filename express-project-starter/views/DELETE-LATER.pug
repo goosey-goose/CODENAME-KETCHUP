@@ -1,0 +1,53 @@
+extends layout
+
+include utils.pug
+
+//- block content
+input(type='hidden' name='_csrf' value=csrfToken)
++field('Review content:', 'content', review.content, 'textarea')
+//change rating field to dropdown list?
++field('Ketchup Rating:', 'userRating', review.userRating, 'number')
+//- +field('Comments', 'comments', review.comment, 'textarea') BONUS FEATURE
+
+/shows/:id(\\d+)/reviews
+
+//- mixin field(labelText, fieldName, fieldValue, fieldType = 'text')
+//-   div(class='form-group')
+//-     label(for=fieldName)= labelText
+//-     input(type=fieldType id=fieldName name=fieldName value=fieldValue class='form-control')
+
+//- mixin validationErrorSummary(errors)
+//-   if errors
+//-     div
+//-       p The following error(s) occurred:
+//-       ul
+//-         each error in errors
+//-           li= error
+
+
+//- extends layout.pug
+
+//- include utils.pug
+
+//- block content
+//-   h3: em for #{attraction.attractionName}
+//-   h4(class='pb-3'): em at #{attraction.park.parkName}
+//-   +validationErrorSummary(errors)
+//-   form(action=`/attraction/${attraction.id}/visit/add` method='post')
+//-     include visit-form-fields.pug
+//-     div(class='py-4')
+//-       button(type='submit' class='btn btn-primary') Add Visit
+//-       a(href=`/attraction/${attraction.id}` class='btn btn-warning ml-2') Cancel
+
+
+block content
+  //- h3: em for #{Shows.title}
+  //- +validationErrorSummary(errors)
+	form(action='/shows/:id(\\d+)/reviews' method='post')
+		input(type='hidden' name='_csrf' value=csrfToken)
+		+field('Review content:', 'content', review.content, 'textarea')
+		+field('Ketchup Rating:', 'userRating', review.userRating, 'number')
+		//- +field('Comments', 'comments', review.comment, 'textarea') BONUS FEATURE
+		div(class='py-4')
+			button(type='submit' class='btn btn-primary') Add Show Review
+			a(href=`/shows/:id(\\d+)` class='btn btn-warning ml-2') Cancel
