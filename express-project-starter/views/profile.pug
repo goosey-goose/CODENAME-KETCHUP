@@ -1,0 +1,10 @@
+extends layout.pug
+
+block content
+
+  p This is the profile template!
+  ul
+    each show in watchedList
+      li=show.showId
+    each show in wantToWatchList
+      li=show.showId
