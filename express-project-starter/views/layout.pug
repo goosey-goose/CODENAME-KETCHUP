@@ -4,21 +4,28 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/stylesheets/layout.css")
     title Ketchup
 
   body
-    nav(class='nav__container')
-      a(class='nav__logo' href='/') Ketchup
+    .container
+      .header
+        .header__logo-container
+          a(href='/').header__logo ketchup
+        .header__search
+          input(type="text" placeholder="Search")
+        .header__actions
+          if locals.authenticated
+            span Welcome #{user.firstName}!
+            form(action='/users/logout' method='post')
+              button(type='submit') Logout
+          else
+            span()
+              a(href='/users/login') Login
+              a(href='/users/register') Register
 
 
+      .sidebar
 
-    if locals.authenticated
-      span Welcome #{user.firstName}!
-      form(action='/users/logout' method='post')
-        button(type='submit') Logout
-    else
-      span()
-        a(href='/users/login') Login
-        a(href='/users/register') Register
-
-    block content
+      .main
+        block content
