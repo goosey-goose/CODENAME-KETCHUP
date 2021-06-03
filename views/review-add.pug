@@ -7,20 +7,12 @@ block content
 		div(class='form-group')
 			label(for=content)= Review Content:
 			input(type='hidden' name='_csrf' value=csrfToken)
-			input(type=text id=content name=content value=review.content)
+			input(type=textarea id=content name=content value=review.content)
 			label(for=userRating)= Ketchup Rating:
-			input(type=text id=userRating name=userRating value=review.userRating)
+			input(type=number id=userRating name=userRating value=review.userRating)
 
-		+field('Review content:', 'content', review.content, 'textarea')
-		+field('Ketchup Rating:', 'userRating', review.userRating, 'number')
+		//- +field('Review content:', 'content', review.content, 'textarea')
+		//- +field('Ketchup Rating:', 'userRating', review.userRating, 'number')
 		div(class='py-4')
 			button(type='submit') Add Show Review
 			a(href=`/shows/:id(\\d+)` ) Cancel
-
-
-mixin field(labelText, fieldName, fieldValue, fieldType = 'text')
-  div(class='form-group')
-    label(for=fieldName)= labelText
-    input(type=fieldType id=fieldName name=fieldName value=fieldValue class='form-control')
-		+field('Review content:', 'content', review.content, 'textarea')
-		+field('Ketchup Rating:', 'userRating', review.userRating, 'number')
