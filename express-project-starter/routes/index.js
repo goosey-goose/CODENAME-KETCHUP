@@ -9,4 +9,23 @@ router.get('/', asyncHandler(async (req, res, next) => {
   res.render('index', { title: 'a/A Express Skeleton Home', shows });
 }));
 
+/* GET shows/:id */
+router.get('/shows/:id(\\d+)', asyncHandler(async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const show = await db.Show.findByPk(id);
+  const reviews = await db.Review.findAll({
+    where: { showId: id },
+    include: [{
+      model: db.User,
+      as: 'User'
+    }]
+  });
+
+  res.render('show', {
+    title: show.title,
+    show,
+    reviews
+  })
+}));
+
 module.exports = router;

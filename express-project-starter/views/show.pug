@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  div
+    img(src=`${show.poster}` alt=`Poster for ${show.title}`)
+    p= show.title
+
+  div
+    p= show.year
+    p= show.rated
+    p= show.releaseDate
+    p= show.runTime
+    p= show.genre
+    p= show.director
+    p= show.writers
+    p= show.actors
+    p= show.plot
+    p= show.language
+    p= show.country
+    p= show.awards
+    p= show.imdbRating
+    p= show.imbdId
+    p= show.totalSeasons
+    p= show.ketchupAverageRating
+
+  each review in reviews
+    div
+      img(src=`${review.User.profilePicLink}`)
+      p= review.User.userName
+      p= review.content
+      p #{review.userRating} ketchup points
