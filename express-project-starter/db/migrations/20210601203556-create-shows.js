@@ -60,7 +60,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       ketchupAverageRating: {
-        type: Sequelize.NUMERIC(3,1)
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
