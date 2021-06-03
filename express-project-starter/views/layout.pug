@@ -1,17 +1,24 @@
 doctype html
-html
+html(lang="en")
   head
-      block head
-        title="Express Starter App"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Ketchup
+
   body
+    nav(class='nav__container')
+      a(class='nav__logo' href='/') Ketchup
+
+
+
     if locals.authenticated
-      span(class='navbar-text px-4') Welcome #{user.firstName}!
-      form(class='form-inline pr-4' action='/users/logout' method='post')
-        button(class='btn btn-sm btn-warning' type='submit') Logout
+      span Welcome #{user.firstName}!
+      form(action='/users/logout' method='post')
+        button(type='submit') Logout
     else
-      span(class='navbar-text px-4')
-        a(class='btn btn-sm btn-dark mr-2' href='/users/login') Login
-        a(class='btn btn-sm btn-dark' href='/users/register') Register
+      span()
+        a(href='/users/login') Login
+        a(href='/users/register') Register
 
     block content
