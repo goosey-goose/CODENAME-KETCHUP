@@ -18,8 +18,9 @@ module.exports = (sequelize, DataTypes) => {
     imdbRating: DataTypes.STRING,
     imdbId: DataTypes.STRING,
     totalSeasons: DataTypes.STRING,
-    ketchupAverageRating: DataTypes.NUMERIC(3, 1),
+    ketchupAverageRating: DataTypes.STRING,
   }, {});
+
   Show.associate = function (models) {
     Show.hasMany(models.Review, { foreignKey: 'showId' });
 
