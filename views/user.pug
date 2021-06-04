@@ -1,34 +1,36 @@
-extends layout.pug
+extends layout
 
 block content
 
-  h1 My Shows
-  h2 Watched Shows
-  each show in watchedShows
-    img(src=`${show.poster}` alt=`Poster for ${show.title}`)
-    show.year
-    show.rated
-    show.releaseDate
-    show.runTime
-    show.genre
-    show.writers
-    show.actors
-    show.plot
-    show.awards
-    show.totalSeasons
-    show.ketchupAverageRating
+  if watchedShows.length > 0
+    h1 Watched
+      each show in watchedShows
+          a(href=`/shows/${show.id}`).show-card
+            div
+              img(src=`${show.poster}`).show-card__poster
+            .show-card__details
+              h2.show-card__title= show.title
+              p= show.ketchupAverageRating
+              p= show.plot
 
-  h2 Want to Watch
-  each show in wantToWatchShows
-    img(src=`${show.poster}` alt=`Poster for ${show.title}`)
-    show.year
-    show.rated
-    show.releaseDate
-    show.runTime
-    show.genre
-    show.writers
-    show.actors
-    show.plot
-    show.awards
-    show.totalSeasons
-    show.ketchupAverageRating
+  if wantToWatchShows.length > 0
+    h1 Want to Watch
+      each show in wantToWatchShows
+          a(href=`/shows/${show.id}`).show-card
+            div
+              img(src=`${show.poster}`).show-card__poster
+            .show-card__details
+              h2.show-card__title= show.title
+              p= show.ketchupAverageRating
+              p= show.plot
+
+  h1 My Reviews
+  each review in reviews
+    a(href=`/shows/${review.Show.id}`).show-card
+      div
+        img(src=`${review.Show.poster}`).show-card__poster
+      .show-card__details
+        h2.show-card__title= review.Show.title
+        p= `Ketchup Rating: ${review.Show.ketchupAverageRating}`
+        p= `My Rating: ${review.userRating} 🥫`
+        p= review.content

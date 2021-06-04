@@ -6,7 +6,7 @@ const Sequelize = require("sequelize");
 const db = require('../db/models');
 const Op = Sequelize.Op;
 
-router.get('/:id(\\d+)', restoreUser, requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+router.get('/:id(\\d+)', requireAuth, restoreUser, csrfProtection, asyncHandler(async (req, res, next) => {
   const id = parseInt(req.params.id, 10);
   const watchedList = await db.WatchedList.findAll({
     where: { userId: id },
@@ -34,7 +34,11 @@ router.get('/:id(\\d+)', restoreUser, requireAuth, csrfProtection, asyncHandler(
       }
     }
   })
-  res.render('user', { csrfToken: req.csrfToken(), watchedShows, wantToWatchShows });
+  const reviews = await db.Review.findAll({
+    where: { userId: id },
+    include: { model: db.Show }
+  })
+  res.render('user', { csrfToken: req.csrfToken(), watchedShows, wantToWatchShows, reviews });
 }));
 
 
