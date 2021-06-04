@@ -15,7 +15,7 @@ router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
 /* GET shows/:id */
 router.get('/shows/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
   const showId = parseInt(req.params.id, 10);
-  const show = await db.Show.findByPk(id);
+  const show = await db.Show.findByPk(showId);
   const reviews = await db.Review.findAll({
     where: { showId },
     include: [{ model: db.User, as: 'User' }]
