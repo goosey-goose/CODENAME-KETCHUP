@@ -1,0 +1,34 @@
+extends layout.pug
+
+block content
+
+  h1 My Shows
+  h2 Watched Shows
+  each show in watchedShows
+    img(src=`${show.poster}` alt=`Poster for ${show.title}`)
+    show.year
+    show.rated
+    show.releaseDate
+    show.runTime
+    show.genre
+    show.writers
+    show.actors
+    show.plot
+    show.awards
+    show.totalSeasons
+    show.ketchupAverageRating
+
+  h2 Want to Watch
+  each show in wantToWatchShows
+    img(src=`${show.poster}` alt=`Poster for ${show.title}`)
+    show.year
+    show.rated
+    show.releaseDate
+    show.runTime
+    show.genre
+    show.writers
+    show.actors
+    show.plot
+    show.awards
+    show.totalSeasons
+    show.ketchupAverageRating
