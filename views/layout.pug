@@ -1,10 +1,10 @@
 doctype html
 html(lang="en")
-  head
+  block head
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet", href="/stylesheets/layout.css")
+    link(rel="stylesheet", href="/stylesheets/main.css")
     title Ketchup
 
   body
@@ -16,16 +16,23 @@ html(lang="en")
           input(type="text" placeholder="Search")
         .header__actions
           if locals.authenticated
-            span Welcome #{user.firstName}!
+            span Welcome #{user.userName}!
             form(action='/users/logout' method='post')
-              button(type='submit') Logout
+              button(type='submit') LOG OUT
           else
             span()
-              a(href='/users/login') Login
-              a(href='/users/register') Register
+              a(href='/users/login') LOG IN
+              a(href='/users/register') SIGN UP
 
 
       .sidebar
+        if locals.authenticated
+          .sidebar__profile-pic-container
+            img(src=`${user.profilePicLink}`, alt="User profile picture").sidebar__profile-pic
+          .sidebar__username
+            p= user.userName
+          .sidebar__bio
+            p= user.bio
 
       .main
         block content

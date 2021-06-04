@@ -1,5 +1,3 @@
-@import url("reset.css");
-
 body {
   background-color: #e9e9e9;
 }
@@ -52,11 +50,20 @@ body {
   grid-area: main;
   margin-left: 100px;
   background-color:rgb(255, 255, 255);
+  border-radius: 10px;
 }
 
 .sidebar {
-  height: 500px;
   grid-area: sidebar;
   margin-right: 100px;
   background-color:rgb(255, 255, 255);
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  height: fit-content;
+  border-radius: 10px;
+}
+
+.sidebar__profile-pic {
+  border-radius: 10% 30% 50% 70%;
 }
