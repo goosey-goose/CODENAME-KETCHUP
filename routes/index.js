@@ -12,6 +12,10 @@ router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
   res.render('index', { title: 'a/A Express Skeleton Home', shows, csrfToken: req.csrfToken() });
 }));
 
+router.get('/shows', (req, res) => {
+  res.redirect('/');
+})
+
 /* GET shows/:id */
 router.get('/shows/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
   const showId = parseInt(req.params.id, 10);
