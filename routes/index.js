@@ -12,6 +12,10 @@ router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
   res.render('index', { title: 'a/A Express Skeleton Home', shows, csrfToken: req.csrfToken() });
 }));
 
+router.get('/shows', (req, res) => {
+  res.redirect('/');
+})
+
 /* GET shows/:id */
 router.get('/shows/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
   const showId = parseInt(req.params.id, 10);
@@ -69,37 +73,37 @@ router.post('/shows/:id/want-to-watch', asyncHandler(async (req, res) => {
 
 /* GET shows/:id/reviews */
 router.get('/shows/:id(\\d+)/reviews', csrfProtection, asyncHandler(async (req, res) => {
-	const id = req.params.id;
-	const show = await db.Show.findByPk(id);
-	const review = db.Review.build();
-	res.render('review-add', {
-		title: 'Add Show Reviews',
-		show,
-		review,
-		id,
-		csrfToken: req.csrfToken(),
-	});
+  const id = req.params.id;
+  const show = await db.Show.findByPk(id);
+  const review = db.Review.build();
+  res.render('review-add', {
+    title: 'Add Show Reviews',
+    show,
+    review,
+    id,
+    csrfToken: req.csrfToken(),
+  });
 }));
 
 /* POST shows/:id/reviews */
 router.post('/shows/:id(\\d+)/reviews', csrfProtection, asyncHandler(async (req, res) => {
-	const {
-		userId,
-		showId,
-		content,
-		userRating
-	} = req.body;
+  const {
+    userId,
+    showId,
+    content,
+    userRating
+  } = req.body;
 
-	console.log("***REQ BODY***", req.body)
-	// console.log(userRating)
-	await db.Review.build({
-		userId,		//fix hardcode!
-		showId,		//fix hardcode!
-		content,
-		userRating,
-	});
+  console.log("***REQ BODY***", req.body)
+  // console.log(userRating)
+  await db.Review.build({
+    userId,		//fix hardcode!
+    showId,		//fix hardcode!
+    content,
+    userRating,
+  });
 
-	res.redirect('/');		//update redirect router later
+  res.redirect('/');		//update redirect router later
 }));
 
 module.exports = router;

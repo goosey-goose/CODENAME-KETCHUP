@@ -21,11 +21,11 @@ html(lang="en")
           if locals.authenticated
             span Welcome #{user.userName}!
             form(action='/logout' method='post')
-              button(type='submit') Logout
+              button(type='submit') Log Out
           else
-            span()
-              a(href='/login') Login
-              a(href='/register') Register
+            span
+              a(href='/login').header__login-btn Log In
+              a(href='/register').header__register-btn Register
 
 
       .sidebar
