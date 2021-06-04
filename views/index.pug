@@ -7,12 +7,11 @@ extends layout
   // script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1= title
-  p Welcome to your Project Skeleton
-  ul
-    each show in shows
-      div
-        img(src=`${show.poster}`)
-      li= show.title
-      li= show.imdbRating
-      li= show.ketchupAverageRating
+  each show in shows
+    .show-card
+      a(href=`/shows/${show.id}`)
+        img(src=`${show.poster}`).show-card__poster
+      .show-card__details
+        h2.show-card__title= show.title
+        p= show.ketchupAverageRating
+        p= show.plot
