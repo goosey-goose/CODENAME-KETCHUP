@@ -4,7 +4,7 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet", href="/stylesheets/layout.css")
+    link(rel="stylesheet", href="/stylesheets/main.css")
     title ketchup
 
   body
@@ -19,7 +19,7 @@ html(lang="en")
             input(type="search" id="search" name="q" placeholder="Search Shows" size="40" style="height:30px" required)
         .header__actions
           if locals.authenticated
-            span Welcome #{user.firstName}!
+            span Welcome #{user.userName}!
             form(action='/logout' method='post')
               button(type='submit') Logout
           else
@@ -29,6 +29,13 @@ html(lang="en")
 
 
       .sidebar
+        if locals.authenticated
+          .sidebar__profile-pic-container
+            img(src=`${user.profilePicLink}`, alt="User profile picture").sidebar__profile-pic
+          .sidebar__username
+            p= user.userName
+          .sidebar__bio
+            p= user.bio
 
       .main
         block content

@@ -17,19 +17,54 @@ router.get('/shows/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => 
   const id = parseInt(req.params.id, 10);
   const show = await db.Show.findByPk(id);
   const reviews = await db.Review.findAll({
-    where: { showId: id },
-    include: [{
-      model: db.User,
-      as: 'User'
-    }]
+    where: { showId },
+    include: [{ model: db.User, as: 'User' }]
+  });
+
+  const watched = await db.WatchedList.findOne({
+    where: {
+      showId,
+      userId: res.locals.user.id
+    }
+  });
+
+  const wantToWatch = await db.WantToWatchList.findOne({
+    where: {
+      showId,
+      userId: res.locals.user.id
+    }
   });
 
   res.render('show', {
     title: show.title,
     show,
     reviews,
+    watched,
+    wantToWatch
+  });
+}));
+
+/* Adds show to watched list */
+router.post('/shows/:id/watched', asyncHandler(async (req, res) => {
+  const showId = parseInt(req.params.id, 10);
+  const userId = res.locals.user.id;
+  await db.WatchedList.create({
+    showId,
+    userId,
     csrfToken: req.csrfToken()
   })
+  res.redirect(`/shows/${showId}`)
+}));
+
+/* Adds show to want to watch list */
+router.post('/shows/:id/want-to-watch', asyncHandler(async (req, res) => {
+  const showId = parseInt(req.params.id, 10);
+  const userId = res.locals.user.id;
+  await db.WantToWatchList.create({
+    showId,
+    userId
+  })
+  res.redirect(`/shows/${showId}`)
 }));
 
 /* GET shows/:id/reviews */
