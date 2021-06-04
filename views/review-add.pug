@@ -3,18 +3,39 @@ extends layout.pug
 include utils.pug
 
 block content
+	div(align='center')
+		h2= show.title
+		img(src=`${show.poster}` alt=`Poster for ${show.title}`)
+
 	form(action=`/shows/${id}/reviews` method='post')
 		div(class='form-group')
 			input(type='hidden' name='_csrf' value=csrfToken)
 
 			label(for='content') Review Content:
-			input(type='textarea' id='content' name='content' value=review.content)
+			p
+			textarea(id='content' name='content' value=review.content cols='35' rows='10')
 
-			label(for='userRating') Ketchup Rating:
-			input(type='number' id='userRating' name='userRating' value=review.userRating)
+			p
+			label(for='userRating') User Ketchup Rating (10🥫's = Best):
+			p
+			select(name='userRating' id='userRating')
+				option(value=none selected disabled hidden) 🥫 Rate This Show!
+				option(value=1) 1 🥫
+				option(value=2) 2 🥫
+				option(value=3) 3 🥫
+				option(value=4) 4 🥫
+				option(value=5) 5 🥫
+				option(value=6) 6 🥫
+				option(value=7) 7 🥫
+				option(value=8) 8 🥫
+				option(value=9) 9 🥫
+				option(value=10) 10 🥫
+
+		//- input(type='number' id='userRating' name='userRating' value=review.userRating)
 
 		//- +field('Review content:', 'content', review.content, 'textarea')
 		//- +field('Ketchup Rating:', 'userRating', review.userRating, 'number')
+		p
 		div(class='py-4')
 			button(type='submit') Add Show Review
-			a(href='/shows/:id(\\d+)' ) Cancel
+			a(href=`/shows/${id}`) Cancel
