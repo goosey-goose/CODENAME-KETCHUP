@@ -5,24 +5,27 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="/stylesheets/layout.css")
-    title Ketchup
+    title ketchup
 
   body
     .container
       .header
         .header__logo-container
+          img(src="tomato.png" style="height: 1.75em;padding-right:5px")
           a(href='/').header__logo ketchup
         .header__search
-          input(type="text" placeholder="Search")
+          form(action="/search" method="post")
+            input(type='hidden' name='_csrf' value=csrfToken)
+            input(type="search" id="search" name="q" placeholder="Search Shows" size="40" style="height:30px" required)
         .header__actions
           if locals.authenticated
             span Welcome #{user.firstName}!
-            form(action='/users/logout' method='post')
+            form(action='/logout' method='post')
               button(type='submit') Logout
           else
             span()
-              a(href='/users/login') Login
-              a(href='/users/register') Register
+              a(href='/login') Login
+              a(href='/register') Register
 
 
       .sidebar
