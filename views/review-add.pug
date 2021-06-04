@@ -3,16 +3,18 @@ extends layout.pug
 include utils.pug
 
 block content
-	form(action='/shows/:id(\\d+)/reviews' method='post')
+	form(action=`/shows/${id}/reviews` method='post')
 		div(class='form-group')
-			label(for=content)= Review Content:
 			input(type='hidden' name='_csrf' value=csrfToken)
-			input(type=textarea id=content name=content value=review.content)
-			label(for=userRating)= Ketchup Rating:
-			input(type=number id=userRating name=userRating value=review.userRating)
+
+			label(for='content') Review Content:
+			input(type='textarea' id='content' name='content' value=review.content)
+
+			label(for='userRating') Ketchup Rating:
+			input(type='number' id='userRating' name='userRating' value=review.userRating)
 
 		//- +field('Review content:', 'content', review.content, 'textarea')
 		//- +field('Ketchup Rating:', 'userRating', review.userRating, 'number')
 		div(class='py-4')
 			button(type='submit') Add Show Review
-			a(href=`/shows/:id(\\d+)` ) Cancel
+			a(href='/shows/:id(\\d+)' ) Cancel
