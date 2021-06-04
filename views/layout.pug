@@ -31,7 +31,10 @@ html(lang="en")
       .sidebar
         if locals.authenticated
           .sidebar__profile-pic-container
-            img(src=`${user.profilePicLink}`, alt="User profile picture").sidebar__profile-pic
+            if user.profilePicLink
+              img(src=`${user.profilePicLink}` alt="User profile picture").sidebar__profile-pic
+            else
+              img(src="profile.png" alt="User profile picture").sidebar__profile-pic
           .sidebar__username
             p= user.userName
           .sidebar__bio

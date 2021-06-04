@@ -3,13 +3,18 @@ extends layout.pug
 include utils.pug
 
 block content
+  div.account-container
+    h2 My Account
 
-  h2 My Account
-
-  img(src=`${locals.user.profilePicLink}` alt="User profile image")
-  form(action='/account' method='post')
-    input(type='hidden' name='_csrf' value=csrfToken)
-    +field('Bio', 'bio', locals.user.bio, 'textarea')
-    +field('Link to Profile Image', 'profilePicLink', locals.user.profilePicLink, 'text')
-    div
-      button(type='submit') Update
+    form(action='/account' method='post')
+      input(type='hidden' name='_csrf' value=csrfToken)
+      div
+        label(for="bio") Bio
+        textarea(name="bio")
+      div
+        label(for="profilePicLink") Image
+        input(type="text" name='profilePicLink')
+      div
+        label(for="deleteAccount") Delete Account
+        input(type="checkbox" name="deleteAccount")
+      button(type="submit" name="delete") Submit
