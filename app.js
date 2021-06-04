@@ -10,7 +10,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const userAuthRouter = require('./routes/user-auth');
 const usersRouter = require('./routes/users');
-const reviewsRouter = require('./routes/reviews');
+// const reviewsRouter = require('./routes/reviews');
 const accountRouter = require('./routes/account');
 const searchRouter = require('./routes/search');
 const { restoreUser } = require('./auth');
@@ -47,9 +47,9 @@ app.use(restoreUser);
 app.use('/', indexRouter);
 app.use(userAuthRouter);
 app.use('/users', usersRouter);
-app.use('/shows/:id(\\d+)', reviewsRouter);
 app.use('/account', accountRouter);
 app.use(searchRouter);
+// app.use('/shows/:id(\\d+)', reviewsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

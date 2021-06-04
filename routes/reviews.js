@@ -16,16 +16,21 @@ const reviewValidators = [
     .withMessage('Please rate this show on a scale from 1 (worst) to 10 (best)'),
 ];
 
-/* GET shows/:id/reviews */
-router.get('/reviews', asyncHandler(async (req, res) => {
-	const id = parseInt(req.params.id, 10);
-	const review = await db.Review.findByPk(id);
-	res.render('review-add', { title: 'Show Reviews' }, review);
-}));
+//! GET/post reviews routes temporarily located in /routes/index.js
+// /* GET shows/:id/reviews */
+// router.get('/reviews', csrfProtection, asyncHandler(async (req, res) => {
+// 	const review = await db.Review.build();
+// 	res.render('review-add', {
+// 		title: 'Add Show Reviews',
+// 		review,
+// 		csrfToken: req.csrfToken(),
+// 	});
+// }));
 
-/* POST shows/:id/reviews */
-// router.post('/shows/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
-
+// /* POST shows/:id/reviews */
+// router.post('/reviews', asyncHandler(async (req, res) => {
+// 	const { content, userRating } = req.body;
+// 	console.log(content)
 // }));
 
 module.exports = router;
