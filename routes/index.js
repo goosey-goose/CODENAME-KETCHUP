@@ -19,7 +19,9 @@ router.get('/shows/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => 
   const reviews = await db.Review.findAll({
     where: { showId },
     include: [{ model: db.User, as: 'User' }]
-  });
+	});
+
+	console.log(reviews)
 
   const watched = await db.WatchedList.findOne({
     where: {
@@ -35,12 +37,15 @@ router.get('/shows/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => 
     }
   });
 
+	const tempId = res.locals.user.id;
+
   res.render('show', {
     title: show.title,
     show,
     reviews,
     watched,
-    wantToWatch
+		wantToWatch,
+		tempId,
   });
 }));
 
@@ -84,22 +89,51 @@ router.get('/shows/:id(\\d+)/reviews', csrfProtection, asyncHandler(async (req, 
 /* POST shows/:id/reviews */
 router.post('/shows/:id(\\d+)/reviews', csrfProtection, asyncHandler(async (req, res) => {
 	const {
-		userId,
-		showId,
 		content,
 		userRating
 	} = req.body;
 
-	console.log("***REQ BODY***", req.body)
+	// console.log("***REQ BODY***", req.body)
 	// console.log(userRating)
-	await db.Review.build({
-		userId,		//fix hardcode!
-		showId,		//fix hardcode!
+	const newReview = await db.Review.build({
+		userId: res.locals.user.id,
+		showId: req.params.id,
 		content,
 		userRating,
 	});
 
-	res.redirect('/');		//update redirect router later
+	await newReview.save();
+
+	res.redirect(`/shows/${req.params.id}`);		//update redirect router later
+}));
+
+/* GET shows/:id/reviews/:reviewId */
+// router.get('/shows/:id(\\d+)', csrfProtection,
+//   asyncHandler(async (req, res) => {
+//     const bookId = parseInt(req.params.id, 10);
+//     const book = await db.Book.findByPk(bookId);
+//     res.render('book-edit', {
+//       title: 'Edit Book',
+//       book,
+//       csrfToken: req.csrfToken(),
+//     });
+//   }));
+
+router.get('/shows/:id(\\d+)/reviews/:reviewId', csrfProtection, asyncHandler(async (req, res) => {
+	const id = req.params.id;
+	const tempId = req.params.reviewId;
+	const show = await db.Show.findByPk(id);
+	// const review = db.Review.build();
+	const review = await db.Review.findByPk(tempId);
+	console.log("##########", review);
+
+	res.render('review-edit', {
+		title: 'Edit Show Reviews',
+		show,
+		review,
+		id,
+		csrfToken: req.csrfToken(),
+	});
 }));
 
 module.exports = router;
