@@ -135,6 +135,16 @@ router.post('/logout', (req, res) => {
   res.redirect('/login');
 });
 
+router.post('/login-demo', asyncHandler(async (req, res) => {
+  const email = 'john@gmail.com'; // demo user's email
+  const user = await db.User.findOne({
+    where: {
+      email
+    }
+  });
+  loginUser(req, res, user);
+  return res.redirect('/');
+}));
 
 
 module.exports = router;

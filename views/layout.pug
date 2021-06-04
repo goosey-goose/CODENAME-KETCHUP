@@ -19,9 +19,9 @@ html(lang="en")
             input(type="search" id="search" name="q" placeholder="Search Shows" size="40" style="height:30px" required)
         .header__actions
           if locals.authenticated
-            span Welcome #{user.userName}!
             form(action='/logout' method='post')
-              button(type='submit') Log Out
+              button(type='submit').header__logout-btn Log Out
+              a(href='/account').header__account-btn Account
           else
             span
               a(href='/login').header__login-btn Log In
@@ -39,6 +39,9 @@ html(lang="en")
             p= user.userName
           .sidebar__bio
             p= user.bio
+        else
+          form(action='/login-demo' method='post')
+            button(type='submit').sidebar__demo-btn Demo
 
       .main
         block content
