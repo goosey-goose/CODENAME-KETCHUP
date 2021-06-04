@@ -3,6 +3,11 @@
     display: flex;
     flex-direction: row;
     padding: 15px;
+    text-decoration: none;
+}
+
+.show-card:hover {
+    background-color: rgb(240, 240, 240);
 }
 
 .show-card__poster {
