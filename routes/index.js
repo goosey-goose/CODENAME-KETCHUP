@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const { check, validationResult } = require('express-validator');
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils')
 
@@ -31,9 +32,11 @@ router.get('/shows/:id(\\d+)', asyncHandler(async (req, res) => {
 /* GET shows/:id/reviews */
 router.get('/shows/:id(\\d+)/reviews', csrfProtection, asyncHandler(async (req, res) => {
 	const id = req.params.id;
+	const show = await db.Show.findByPk(id);
 	const review = db.Review.build();
 	res.render('review-add', {
 		title: 'Add Show Reviews',
+		show,
 		review,
 		id,
 		csrfToken: req.csrfToken(),
@@ -41,18 +44,24 @@ router.get('/shows/:id(\\d+)/reviews', csrfProtection, asyncHandler(async (req, 
 }));
 
 /* POST shows/:id/reviews */
-router.post('/shows/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
-	const { content, userRating } = req.body;
-	// console.log(content)
-	// console.log(userRating)
-	await db.Review.create({
-		userId: 1,
-		showId: 1,
+router.post('/shows/:id(\\d+)/reviews', csrfProtection, asyncHandler(async (req, res) => {
+	const {
+		userId,
+		showId,
 		content,
-		userRating: 5.0,
+		userRating
+	} = req.body;
+
+	console.log("***REQ BODY***", req.body)
+	// console.log(userRating)
+	await db.Review.build({
+		userId,		//fix hardcode!
+		showId,		//fix hardcode!
+		content,
+		userRating,
 	});
 
-	res.redirect('/');
+	res.redirect('/');		//update redirect router later
 }));
 
 module.exports = router;
