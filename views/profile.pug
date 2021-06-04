@@ -2,9 +2,72 @@ extends layout.pug
 
 block content
 
-  p This is the profile template!
-  ul
-    each show in watchedList
-      li=show.showId
-    each show in wantToWatchList
-      li=show.showId
+  .main
+    h2 My Shows
+    h2 Want to Watch
+    table
+      thead
+        tr
+          th Poster
+          th Title
+          th Year
+          th Rated
+          th Release Date
+          th Run Time
+          th Genre
+          th Writers
+          th Actors
+          th Plot
+          th Awards
+          th Total Seasons
+          th Ketchup Rating
+      tbody
+        each show in watchedShows
+          tr
+            td
+              img(src=`${show.poster}` alt=`Poster for ${show.title}`)
+            td= show.year
+            td= show.rated
+            td= show.releaseDate
+            td= show.runTime
+            td= show.genre
+            td= show.writers
+            td= show.actors
+            td= show.plot
+            td= show.awards
+            td= show.totalSeasons
+            td= show.ketchupAverageRating
+
+    h2 Want to Watch
+    table
+      thead
+        tr
+          th Poster
+          th Title
+          th Year
+          th Rated
+          th Release Date
+          th Run Time
+          th Genre
+          th Writers
+          th Actors
+          th Plot
+          th Awards
+          th Total Seasons
+          th Ketchup Rating
+      tbody
+        each show in wantToWatchShows
+          tr
+            td
+              img(src=`${show.poster}` alt=`Poster for ${show.title}`)
+            td= show.year
+            td= show.rated
+            td= show.releaseDate
+            td= show.runTime
+            td= show.genre
+            td= show.writers
+            td= show.actors
+            td= show.plot
+            td= show.awards
+            td= show.totalSeasons
+            td= show.ketchupAverageRating

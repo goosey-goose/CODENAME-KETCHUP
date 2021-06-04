@@ -5,7 +5,9 @@ const { asyncHandler } = require('./utils')
 
 /* GET home page. */
 router.get('/', asyncHandler(async (req, res, next) => {
-  const shows = await db.Show.findAll();
+  const shows = await db.Show.findAll({
+    limit: 10
+  });
   res.render('index', { title: 'a/A Express Skeleton Home', shows });
 }));
 
