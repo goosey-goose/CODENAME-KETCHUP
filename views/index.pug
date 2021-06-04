@@ -12,7 +12,8 @@ block content
   ul
     each show in shows
       div
-        img(src=`${show.poster}`)
+        a(href=`/shows/${show.id}`)
+          img(src=`${show.poster}`)
       li= show.title
       li= show.imdbRating
       li= show.ketchupAverageRating
