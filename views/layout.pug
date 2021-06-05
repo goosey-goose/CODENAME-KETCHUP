@@ -37,6 +37,7 @@ html(lang="en")
               img(src="profile.png" alt="User profile picture").sidebar__profile-pic
           .sidebar__username
             p= user.userName
+          a(href=`/users/${user.id}`).sidebar__profile-btn Profile
           .sidebar__bio
             p= user.bio
         else
