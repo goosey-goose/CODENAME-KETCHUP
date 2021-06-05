@@ -46,6 +46,43 @@ body {
   justify-self: right;
 }
 
+.header__login-btn,
+.header__logout-btn {
+  border: 1px solid rgb(224, 224, 224);
+  background-color: white;
+  border-radius: 5px;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 10px;
+  transition: all 0.3s;
+}
+
+.header__login-btn:hover,
+.header__logout-btn:hover {
+  background-color: rgb(224, 224, 224);
+  color: rgb(39, 39, 39);
+}
+
+.header__register-btn,
+.header__account-btn,
+.sidebar__demo-btn {
+  border-radius: 5px;
+  padding: 8px 12px;
+  background-color: #d62626;
+  transition: all 0.3s;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
+.header__register-btn:hover,
+.header__account-btn:hover,
+.sidebar__demo-btn:hover {
+  background-color: #ff0000;
+}
+
 .main {
   height: auto;
   grid-area: main;
@@ -70,4 +107,6 @@ body {
 }
 
 .sidebar__profile-pic {
-  border-radius: 10% 30% 50% 70%;
+  border-radius: 50%;
+  width: 120px;
+}
