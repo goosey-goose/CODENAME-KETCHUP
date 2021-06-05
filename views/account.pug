@@ -4,17 +4,49 @@ include utils.pug
 
 block content
   div.account-container
-    h2 My Account
+    h1 Account
 
-    form(action='/account' method='post')
-      input(type='hidden' name='_csrf' value=csrfToken)
-      div
-        label(for="bio") Bio
-        textarea(name="bio")
-      div
-        label(for="profilePicLink") Image
-        input(type="text" name='profilePicLink')
-      div
-        label(for="deleteAccount") Delete Account
-        input(type="checkbox" name="deleteAccount")
-      button(type="submit" name="delete") Submit
+    div.account-form
+      form(action='/account/username' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div
+          label.account-label(for="userName") Username
+          input(type="text" name="userName")
+        div
+          button.account-button(type="submit") Update Username
+    div.account-form
+      form(action='/account/password' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div
+          label.account-label(for="password") Password
+          input(type="password" name="password")
+        div
+          label.account-label(for="confirmPassword") Confirm Password
+          input.account-input(type="password" name="confirmPassword")
+        div
+          button.account-button(type="submit") Update Password
+    div.account-form
+      form(action='/account/bio' method='post')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          div
+            label.account-label(for="bio") Bio
+            textarea(name="bio")
+          div
+            button.account-button(type="submit") Update Bio
+    div.account-form
+      form(action='/account/profilepiclink' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div
+          label.account-label(for="profilePicLink") Profile Image
+          input(type="text" name='profilePicLink')
+        div
+          button.account-button(type="submit") Update Profile Image
+
+    div.account-form
+      form(action='/account/delete' method="post")
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div
+          label.account-label(for="deleteAccount") Delete Account
+          input(type="checkbox" name="deleteAccount")
+        div
+          button.account-button(type="submit") Delete Account

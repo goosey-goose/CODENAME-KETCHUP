@@ -2,29 +2,27 @@ extends layout
 
 block content
 
-  if watchedShows.length > 0
-    h1 Watched
-      each show in watchedShows
-          a(href=`/shows/${show.id}`).show-card
-            div
-              img(src=`${show.poster}`).show-card__poster
-            .show-card__details
-              h2.show-card__title= show.title
-              p= show.ketchupAverageRating
-              p= show.plot
+  h1 Watched
+  each show in watchedShows
+      a(href=`/shows/${show.id}`).show-card
+        div
+          img(src=`${show.poster}`).show-card__poster
+        .show-card__details
+          h2.show-card__title= show.title
+          p= show.ketchupAverageRating
+          p= show.plot
 
-  if wantToWatchShows.length > 0
-    h1 Want to Watch
-      each show in wantToWatchShows
-          a(href=`/shows/${show.id}`).show-card
-            div
-              img(src=`${show.poster}`).show-card__poster
-            .show-card__details
-              h2.show-card__title= show.title
-              p= show.ketchupAverageRating
-              p= show.plot
+  h1 Want to Watch
+  each show in wantToWatchShows
+      a(href=`/shows/${show.id}`).show-card
+        div
+          img(src=`${show.poster}`).show-card__poster
+        .show-card__details
+          h2.show-card__title= show.title
+          p= show.ketchupAverageRating
+          p= show.plot
 
-  h1 My Reviews
+  h1 Reviews
   each review in reviews
     a(href=`/shows/${review.Show.id}`).show-card
       div

@@ -2,8 +2,31 @@ body {
   font-family:Arial, Helvetica, sans-serif;
 }
 
+h1 {
+  margin: 5px;
+  padding: 10px;
+}
 .account-container {
   display: grid;
   grid-template-columns: 1fr;
-  justify-items: center;
+  justify-items: left;
 }
+.account-form {
+  padding: 10px;
+  /**border: 1px solid lightgray;**/
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.account-label {
+  margin-right: 5px;
+  margin-top: 5px;
+}
+.account-button {
+  margin-top: 10px;
+}
+.account-input {
+  margin-top: 5px;
+}
+
+

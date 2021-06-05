@@ -47,8 +47,8 @@ app.use(restoreUser);
 app.use('/', indexRouter);
 app.use(userAuthRouter);
 app.use('/users', usersRouter);
-app.use('/account', accountRouter);
 app.use(searchRouter);
+app.use('/account', accountRouter);
 // app.use('/shows/:id(\\d+)', reviewsRouter);
 
 // catch 404 and forward to error handler
