@@ -34,7 +34,7 @@ html(lang="en")
             if user.profilePicLink
               img(src=`${user.profilePicLink}` alt="User profile picture").sidebar__profile-pic
             else
-              img(src="profile.png" alt="User profile picture").sidebar__profile-pic
+              img(src="/images/profile.png" alt="User profile picture").sidebar__profile-pic
           .sidebar__username
             p= user.userName
           a(href=`/users/${user.id}`).sidebar__profile-btn Profile
