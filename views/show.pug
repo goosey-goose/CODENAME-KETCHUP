@@ -1,46 +1,51 @@
 extends layout.pug
 
 block content
-  .show__details
-    .show__details-left
-      img(src=`${show.poster}` alt=`Poster for ${show.title}`).show__poster
-      form(action=`/shows/${show.id}/watched` method='post')
-        if watched
-          button(type='submit' disabled) Watched
-        else
-          button(type='submit') Watched
-      form(action=`/shows/${show.id}/want-to-watch` method='post')
-        if wantToWatch
-          button(type='submit' disabled) Want To Watch
-        else
-          button(type='submit') Want To Watch
+	.show__details
+		.show__details-left
+			img(src=`${show.poster}` alt=`Poster for ${show.title}`).show__poster
+			form(action=`/shows/${show.id}/watched` method='post')
+				if watched
+					button(type='submit' disabled) Watched
+				else
+					button(type='submit') Watched
+			form(action=`/shows/${show.id}/want-to-watch` method='post')
+				if wantToWatch
+					button(type='submit' disabled) Want To Watch
+				else
+					button(type='submit') Want To Watch
+			form(action=`/shows/${show.id}/reviews` method='get')
+				button(type='submit') Add Review
 
-    .show__details-right
-      h2= show.title
-      p= show.plot
+		.show__details-right
+			h2= show.title
+			p= show.plot
 
 
-    .show__details-extra
-       div
-        p= show.year
-        p= show.rated
-        p= show.releaseDate
-        p= show.runTime
-        p= show.genre
-        p= show.director
-        p= show.writers
-        p= show.actors
-        p= show.language
-        p= show.country
-        p= show.awards
-        p= show.imdbRating
-        p= show.imbdId
-        p= show.totalSeasons
-        p= show.ketchupAverageRating
+		.show__details-extra
+			div
+				p= show.year
+				p= show.rated
+				p= show.releaseDate
+				p= show.runTime
+				p= show.genre
+				p= show.director
+				p= show.writers
+				p= show.actors
+				p= show.language
+				p= show.country
+				p= show.awards
+				p= show.imdbRating
+				p= show.imbdId
+				p= show.totalSeasons
+				p= show.ketchupAverageRating
 
-  each review in reviews
-    div
-      img(src=`${review.User.profilePicLink}`)
-      p= review.User.userName
-      p= review.content
-      p #{review.userRating} ketchup points
+	each review in reviews
+		div
+			img(src=`${review.User.profilePicLink}`)
+			p= review.User.userName
+			p= review.content
+			if review.userId === tempId
+				form(action=`/shows/${show.id}/reviews/${review.id}` method='get')
+					button(type='submit') EDIT REVIEW
+			p #{review.userRating} ketchup points
