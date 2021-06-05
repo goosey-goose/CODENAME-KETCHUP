@@ -54,7 +54,7 @@ router.post("/delete", csrfProtection, asyncHandler(async (req, res, next) => {
   if (deleteAccount) {
     await user.destroy();
     logoutUser(req, res, user);
-    res.redirect("../login");
+    res.redirect("../");
   }
 }))
 
