@@ -1,10 +1,11 @@
 const express = require('express');
 const { csrfProtection, asyncHandler } = require('./utils');
 const db = require('../db/models');
+const { requireAuth } = require("../auth");
 
 const router = express.Router();
 
-router.post("/search", csrfProtection, asyncHandler(async (req, res, next) => {
+router.post("/search", requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
   const { q } = req.body;
   const show = await db.Show.findOne({
     where: {
