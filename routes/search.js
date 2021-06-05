@@ -2,7 +2,6 @@ const express = require('express');
 const { csrfProtection, asyncHandler } = require('./utils');
 const { requireAuth } = require("../auth");
 const db = require('../db/models');
-const { requireAuth } = require("../auth");
 
 const router = express.Router();
 
