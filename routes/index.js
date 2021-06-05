@@ -3,6 +3,7 @@ var router = express.Router();
 const { check, validationResult } = require('express-validator');
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils')
+const { requireAuth } = require("../auth")
 
 /* GET home page. */
 router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
@@ -17,15 +18,15 @@ router.get('/shows', (req, res) => {
 })
 
 /* GET shows/:id */
-router.get('/shows/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+router.get('/shows/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
   const showId = parseInt(req.params.id, 10);
   const show = await db.Show.findByPk(showId);
   const reviews = await db.Review.findAll({
     where: { showId },
     include: [{ model: db.User, as: 'User' }]
-	});
+  });
 
-	console.log(reviews)
+  console.log(reviews)
 
   const watched = await db.WatchedList.findOne({
     where: {
@@ -41,15 +42,16 @@ router.get('/shows/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => 
     }
   });
 
-	const tempId = res.locals.user.id;
+  const tempId = res.locals.user.id;
 
   res.render('show', {
     title: show.title,
     show,
     reviews,
     watched,
-		wantToWatch,
-		tempId,
+    wantToWatch,
+    tempId,
+    csrfToken: req.csrfToken()
   });
 }));
 
@@ -92,23 +94,23 @@ router.get('/shows/:id(\\d+)/reviews', csrfProtection, asyncHandler(async (req, 
 
 /* POST shows/:id/reviews */
 router.post('/shows/:id(\\d+)/reviews', csrfProtection, asyncHandler(async (req, res) => {
-	const {
-		content,
-		userRating
-	} = req.body;
+  const {
+    content,
+    userRating
+  } = req.body;
 
-	// console.log("***REQ BODY***", req.body)
-	// console.log(userRating)
-	const newReview = await db.Review.build({
-		userId: res.locals.user.id,
-		showId: req.params.id,
-		content,
-		userRating,
-	});
+  // console.log("***REQ BODY***", req.body)
+  // console.log(userRating)
+  const newReview = await db.Review.build({
+    userId: res.locals.user.id,
+    showId: req.params.id,
+    content,
+    userRating,
+  });
 
-	await newReview.save();
+  await newReview.save();
 
-	res.redirect(`/shows/${req.params.id}`);		//update redirect router later
+  res.redirect(`/shows/${req.params.id}`);		//update redirect router later
 }));
 
 /* GET shows/:id/reviews/:reviewId */
@@ -124,20 +126,20 @@ router.post('/shows/:id(\\d+)/reviews', csrfProtection, asyncHandler(async (req,
 //   }));
 
 router.get('/shows/:id(\\d+)/reviews/:reviewId', csrfProtection, asyncHandler(async (req, res) => {
-	const id = req.params.id;
-	const tempId = req.params.reviewId;
-	const show = await db.Show.findByPk(id);
-	// const review = db.Review.build();
-	const review = await db.Review.findByPk(tempId);
-	console.log("##########", review);
+  const id = req.params.id;
+  const tempId = req.params.reviewId;
+  const show = await db.Show.findByPk(id);
+  // const review = db.Review.build();
+  const review = await db.Review.findByPk(tempId);
+  console.log("##########", review);
 
-	res.render('review-edit', {
-		title: 'Edit Show Reviews',
-		show,
-		review,
-		id,
-		csrfToken: req.csrfToken(),
-	});
+  res.render('review-edit', {
+    title: 'Edit Show Reviews',
+    show,
+    review,
+    id,
+    csrfToken: req.csrfToken(),
+  });
 }));
 
 module.exports = router;
