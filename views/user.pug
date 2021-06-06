@@ -9,8 +9,10 @@ block content
           img(src=`${show.poster}`).show-card__poster
         .show-card__details
           h2.show-card__title= show.title
-          p= show.ketchupAverageRating
-          p= show.plot
+          p= `Ketchup Rating: ${show.ketchupAverageRating}`
+          p= `Release Date: ${show.releaseDate}`
+          p= `Genre: ${show.genre}`
+          p= `Plot: ${show.plot}`
 
   h1 Want to Watch
   each show in wantToWatchShows
@@ -19,8 +21,10 @@ block content
           img(src=`${show.poster}`).show-card__poster
         .show-card__details
           h2.show-card__title= show.title
-          p= show.ketchupAverageRating
-          p= show.plot
+          p= `Ketchup Rating: ${show.ketchupAverageRating}`
+          p= `Release Date: ${show.releaseDate}`
+          p= `Genre: ${show.genre}`
+          p= `Plot: ${show.plot}`
 
   h1 Reviews
   each review in reviews
@@ -29,6 +33,5 @@ block content
         img(src=`${review.Show.poster}`).show-card__poster
       .show-card__details
         h2.show-card__title= review.Show.title
-        p= `Ketchup Rating: ${review.Show.ketchupAverageRating}`
         p= `My Rating: ${review.userRating} 🥫`
-        p= review.content
+        p= `My Review: ${review.content}`
