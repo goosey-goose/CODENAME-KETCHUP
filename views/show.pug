@@ -6,46 +6,48 @@ block content
 			img(src=`${show.poster}` alt=`Poster for ${show.title}`).show__poster
 			form(action=`/shows/${show.id}/watched` method='post')
 				if watched
-					button(type='submit' disabled) Watched
+					button(type='submit' disabled).button__clicked-on Watched
 				else
-					button(type='submit') Watched
+					button(type='submit').button__clicked-off Watched
+			br
 			form(action=`/shows/${show.id}/want-to-watch` method='post')
 				if wantToWatch
-					button(type='submit' disabled) Want To Watch
+					button(type='submit' disabled).button__clicked-on Want To Watch
 				else
-					button(type='submit') Want To Watch
-			form(action=`/shows/${show.id}/reviews` method='get')
-				button(type='submit') Add Review
+					button(type='submit').button__clicked-off Want To Watch
+
 
 		.show__details-right
-			h2= show.title
+			.heading__title-show= show.title
 			p= show.plot
 
-
-		.show__details-extra
 			div
-				p= show.year
-				p= show.rated
-				p= show.releaseDate
-				p= show.runTime
-				p= show.genre
-				p= show.director
-				p= show.writers
-				p= show.actors
-				p= show.language
-				p= show.country
-				p= show.awards
-				p= show.imdbRating
-				p= show.imbdId
-				p= show.totalSeasons
-				p= show.ketchupAverageRating
-
+				h2.show-card__title Additional Show Details
+				p= `Year: ${show.year}`
+				p= `Rated: ${show.rated}`
+				p= `Release Date: ${show.releaseDate}`
+				p= `Run Time: ${show.runTime}`
+				p= `Genre: ${show.genre}`
+				//- p= `${show.director}`
+				//- p= `${show.writers}`
+				p= `Actors: ${show.actors}`
+				p= `Language: ${show.language}`
+				p= `Country: ${show.country}`
+				p= `Awards: ${show.awards}`
+				p= `IMDB Rating: ${show.imdbRating}`
+				//- p= `${show.imbdId}`
+				p= `Total # of Seasons: ${show.totalSeasons}`
+	hr
+	p
+	form(action=`/shows/${show.id}/reviews` method='get')
+		button(type='submit').review-btn Add Review
+	p.heading__title-show User Reviews:
 	each review in reviews
-		div
-			img(src=`${review.User.profilePicLink}`)
-			p= review.User.userName
+		div.review
+			img(src=`${review.User.profilePicLink}`).image__profile-64px
 			p= review.content
+		div
+			p= `${review.User.userName} gave this show a ${review.userRating}/10🥫Ketchup Rating`
 			if review.userId === tempId
 				form(action=`/shows/${show.id}/reviews/${review.id}` method='get')
-					button(type='submit') EDIT REVIEW
-			p #{review.userRating} ketchup points
+					button(type='submit').review-btn Edit Review
