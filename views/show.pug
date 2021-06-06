@@ -15,14 +15,11 @@ block content
 					button(type='submit' disabled).button__clicked-on Want To Watch
 				else
 					button(type='submit').button__clicked-off Want To Watch
-			p
-			form(action=`/shows/${show.id}/reviews` method='get')
-				button(type='submit').review-btn Add Review
+
 
 		.show__details-right
 			.heading__title-show= show.title
 			p= show.plot
-
 
 			div
 				h2.show-card__title Additional Show Details
@@ -41,6 +38,9 @@ block content
 				//- p= `${show.imbdId}`
 				p= `Total # of Seasons: ${show.totalSeasons}`
 	hr
+	p
+	form(action=`/shows/${show.id}/reviews` method='get')
+		button(type='submit').review-btn Add Review
 	p.heading__title-show User Reviews:
 	each review in reviews
 		div.review

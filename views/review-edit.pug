@@ -4,21 +4,21 @@ include utils.pug
 
 block content
 	div(align='center')
-		h2= show.title
+		.review__title-show= show.title
 		img(src=`${show.poster}` alt=`Poster for ${show.title}`)
 
 	form(action=`/shows/${id}/reviews` method='post')
 		div(class='form-group')
 			input(type='hidden' name='_csrf' value=csrfToken)
 
-			label(for='content') Review Content:
-			p
-			textarea(id='content' name='content' cols='35' rows='10') #{review.content}
+			p: p
+			label(for='content') Edit Review:
+			br
+			textarea(id='content' name='content' cols='75' rows='10') #{review.content}
 
-
 			p
-			label(for='userRating') User Ketchup Rating 🥫 (10 is Best):
-			p
+			label(for='userRating') User Ketchup Rating (10🥫 is best):
+			br
 			select(name='userRating' id='userRating')
 				option(value=none selected disabled hidden) 🥫 Rate This Show!
 				option(value=1) 1 🥫
@@ -32,10 +32,6 @@ block content
 				option(value=9) 9 🥫
 				option(value=10) 10 🥫
 
-		//- input(type='number' id='userRating' name='userRating' value=review.userRating)
-
-		//- +field('Review content:', 'content', review.content, 'textarea')
-		//- +field('Ketchup Rating:', 'userRating', review.userRating, 'number')
 		p
 		div(class='py-4')
 			button(type='submit').review-btn Edit Show Review
