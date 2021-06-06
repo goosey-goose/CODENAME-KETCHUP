@@ -17,7 +17,7 @@ block content
 
 
 			p
-			label(for='userRating') User Ketchup Rating (10🥫's = Best):
+			label(for='userRating') User Ketchup Rating 🥫 (10 is Best):
 			p
 			select(name='userRating' id='userRating')
 				option(value=none selected disabled hidden) 🥫 Rate This Show!
@@ -38,5 +38,5 @@ block content
 		//- +field('Ketchup Rating:', 'userRating', review.userRating, 'number')
 		p
 		div(class='py-4')
-			button(type='submit') Edit Show Review
-			a(href=`/shows/${id}`) Cancel
+			button(type='submit').review-btn Edit Show Review
+			p: a(href=`/shows/${id}`).review-btn Cancel
