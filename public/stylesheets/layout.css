@@ -69,6 +69,7 @@ body {
   font-size: 14px;
   margin-right: 10px;
   transition: all 0.3s;
+  display: inline-block;
 }
 
 .header__login-btn:hover,
@@ -89,6 +90,7 @@ body {
   color: white;
   text-decoration: none;
   border: none;
+  display: inline-block;
 }
 
 .header__register-btn:hover,
@@ -96,6 +98,15 @@ body {
 .sidebar__demo-btn:hover,
 .sidebar__profile-btn:hover {
   background-color: #ff0000;
+}
+
+a.header__login-btn:active,
+button.header__logout-btn:active,
+a.header__register-btn:active,
+a.header__account-btn:active,
+.sidebar__demo-btn:active,
+.sidebar__profile-btn:active {
+  transform: translateY(2px);
 }
 
 .main {
