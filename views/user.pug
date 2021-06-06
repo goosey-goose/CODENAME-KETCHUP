@@ -47,4 +47,4 @@ block content
         p= `My Rating: ${review.userRating}`
         p= `My Review: ${review.content}`
         form(action=`/shows/${review.Show.id}/reviews/${review.id}` method='get')
-        button(type='submit').review-btn Edit Review
+          button(type='submit').review-btn Edit Review
