@@ -1,0 +1,33 @@
+.review__title-show {
+	font-weight: bold;
+  font-size: 24px;
+}
+
+.review-btn {
+  border-radius: 5px;
+  padding: 4px 6px;
+  background-color: #d62626;
+  transition: all 0.3s;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+  border: none;
+  display: inline-block;
+}
+
+.review-btn:hover {
+  background-color: #ff0000;
+}
+
+a.review-btn:active {
+  transform: translateY(2px);
+}
+
+.review {
+	display: flex;
+	/* width: 80%; */
+	height: 100px;
+	padding: 10px;
+	background-color: rgba(28, 28, 28, 0.05);
+	align-self: flex-end;
+}
