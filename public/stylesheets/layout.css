@@ -42,6 +42,19 @@ body {
   justify-self: center;
 }
 
+.header__searchbar {
+  border-radius: 5px;
+  background-color: #f5f8ff;
+  border: 0;
+  padding: 0 10px 0 32px;
+}
+
+.header__searchbar:focus {
+  background-color: white;
+  border: 1px solid #cfcfcf;
+  outline: none;
+}
+
 .header__actions {
   justify-self: right;
 }
