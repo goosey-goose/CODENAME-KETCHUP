@@ -16,7 +16,7 @@ html(lang="en")
         .header__search
           form(action="/search" method="post")
             input(type='hidden' name='_csrf' value=csrfToken)
-            input(type="search" id="search" name="q" placeholder="Search Shows" size="40" style="height:30px" required)
+            input(type="search" id="search" name="q" placeholder="Search Shows" size="40" style="height:30px" required).header__searchbar
         .header__actions
           if locals.authenticated
             form(action='/logout' method='post')

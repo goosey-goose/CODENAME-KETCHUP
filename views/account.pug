@@ -11,7 +11,7 @@ block content
         input(type='hidden' name='_csrf' value=csrfToken)
         div
           label.account-label(for="userName") Username
-          input(type="text" name="userName")
+          input.account-input(type="text" name="userName")
         div
           button.account-button(type="submit") Update Username
     div.account-form
@@ -19,7 +19,7 @@ block content
         input(type='hidden' name='_csrf' value=csrfToken)
         div
           label.account-label(for="password") Password
-          input(type="password" name="password")
+          input.account-input(type="password" name="password")
         div
           label.account-label(for="confirmPassword") Confirm Password
           input.account-input(type="password" name="confirmPassword")
@@ -30,7 +30,7 @@ block content
           input(type='hidden' name='_csrf' value=csrfToken)
           div
             label.account-label(for="bio") Bio
-            textarea(name="bio")
+            textarea.account-input(name="bio")
           div
             button.account-button(type="submit") Update Bio
     div.account-form
@@ -38,7 +38,7 @@ block content
         input(type='hidden' name='_csrf' value=csrfToken)
         div
           label.account-label(for="profilePicLink") Profile Image
-          input(type="text" name='profilePicLink')
+          input.account-input(type="text" name='profilePicLink')
         div
           button.account-button(type="submit") Update Profile Image
 

@@ -8,8 +8,8 @@ block content
   +validationErrorSummary(errors)
   form(action='/login' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)
-    +field('Email Address', 'email', email)
-    +field('Password', 'password', null, 'password')
+    +field('Email Address', 'email', email, 'text', 'form-control login__email-input')
+    +field('Password', 'password', null, 'password', 'form-control login__password-input')
     div
-      button(type='submit') Login
-      a(href='/') Cancel
+      button(type='submit').login__login-btn Login
+      a(href='/').login__cancel-btn Cancel

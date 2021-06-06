@@ -1,0 +1,50 @@
+.login__email-input,
+.login__password-input {
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: 1px solid rgb(216, 216, 216);
+  font-size: 16px;
+  width: 300px;
+  display: block;
+  margin: 10px 0;
+}
+
+.login__cancel-btn {
+  border: 1px solid rgb(224, 224, 224);
+  background-color: white;
+  border-radius: 5px;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 10px;
+  transition: all 0.3s;
+  display: inline-block;
+  margin: 10px;
+}
+
+.login__cancel-btn:hover {
+  background-color: rgb(224, 224, 224);
+  color: rgb(39, 39, 39);
+}
+
+.login__login-btn {
+  border-radius: 5px;
+  padding: 8px 12px;
+  background-color: #d62626;
+  transition: all 0.3s;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+  border: none;
+  display: inline-block;
+  margin: 10px;
+}
+
+.login__login-btn:hover {
+  background-color: #ff0000;
+}
+
+.login__cancel-btn:active,
+.login__login-btn:active {
+  transform: translateY(2px);
+}
