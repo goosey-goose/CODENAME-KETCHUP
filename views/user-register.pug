@@ -8,11 +8,11 @@ block content
 	+validationErrorSummary(errors)
 	form(action='/register' method='post')
 		input(type='hidden' name='_csrf' value=csrfToken)
-		+field('User Name', 'userName', user.userName, 'text')
-		+field('Email Address', 'email', user.email, 'text')
-		+field('Password', 'password', user.hashedPassword, 'password')
-		+field('Confirm Password', 'confirmPassword', '', 'password')
+		+field('User Name', 'userName', user.userName, 'text', 'form-control register__username')
+		+field('Email Address', 'email', user.email, 'text', 'form-control register__email')
+		+field('Password', 'password', user.hashedPassword, 'password', 'form-control register__password')
+		+field('Confirm Password', 'confirmPassword', '', 'password', 'form-control register__confirm-password')
 
 		div(class='py-4')
-			button(type='submit' class='btn btn-primary') Register
-			a(href='/' class='btn btn-warning ml-2') Cancel
+			button(type='submit' class='btn btn-primary').register__register-btn Register
+			a(href='/' class='btn btn-warning ml-2').register__cancel-btn Cancel
