@@ -13,6 +13,8 @@ block content
           p= `Release Date: ${show.releaseDate}`
           p= `Genre: ${show.genre}`
           p= `Plot: ${show.plot}`
+          form(action=`/shows/${show.id}/reviews` method='get')
+          button(type='submit').review-btn Add Review
 
   h1 Want to Watch
   each show in wantToWatchShows
@@ -25,6 +27,15 @@ block content
           p= `Release Date: ${show.releaseDate}`
           p= `Genre: ${show.genre}`
           p= `Plot: ${show.plot}`
+          form(action=`/users/${locals.user.id}/watched` method='post')
+            input(type="hidden" name="showId" value=show.id)
+            input(type="hidden" name="_csrf" value=csrfToken)
+            button(type='submit').button__clicked-off Watched
+          br
+          form(action=`/users/${locals.user.id}/remove` method='post')
+            input(type="hidden" name="showId" value=show.id)
+            input(type="hidden" name="_csrf" value=csrfToken)
+            button(type='submit').button__clicked-off Remove
 
   h1 Reviews
   each review in reviews
@@ -35,3 +46,5 @@ block content
         h2.show-card__title= review.Show.title
         p= `My Rating: ${review.userRating}`
         p= `My Review: ${review.content}`
+        form(action=`/shows/${review.Show.id}/reviews/${review.id}` method='get')
+        button(type='submit').review-btn Edit Review

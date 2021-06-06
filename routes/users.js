@@ -41,5 +41,37 @@ router.get('/:id(\\d+)', requireAuth, restoreUser, csrfProtection, asyncHandler(
   res.render('user', { csrfToken: req.csrfToken(), watchedShows, wantToWatchShows, reviews });
 }));
 
+/* Adds show to watched list */
+router.post('/:id(\\d+)/watched', csrfProtection, asyncHandler(async (req, res) => {
+
+  const { showId } = req.body
+  const userId = res.locals.user.id;
+  await db.WatchedList.create({
+    "showId": showId,
+    "userId": userId,
+  })
+  const removedShow = await db.WantToWatchList.findOne({
+    where: {
+      "showId": showId,
+      "userId": userId
+    }
+  })
+  await removedShow.destroy();
+  res.redirect(`/users/${userId}`)
+}));
+
+/* Removes show from want to watch list */
+router.post('/:id(\\d+)/remove', csrfProtection, asyncHandler(async (req, res) => {
+  const { showId } = req.body
+  const userId = res.locals.user.id;
+  const removedShow = await db.WantToWatchList.findOne({
+    where: {
+      "showId": showId,
+      "userId": userId
+    }
+  })
+  await removedShow.destroy();
+  res.redirect(`/users/${userId}`)
+}));
 
 module.exports = router;
