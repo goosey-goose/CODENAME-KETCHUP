@@ -14,7 +14,12 @@ block content
           p= `Genre: ${show.genre}`
           p= `Plot: ${show.plot}`
           form(action=`/shows/${show.id}/reviews` method='get')
-          button(type='submit').review-btn Add Review
+            button(type='submit').review-btn Add Review
+          br
+          form(action=`/users/${locals.user.id}/remove-watched` method='post')
+            input(type="hidden" name="showId" value=show.id)
+            input(type="hidden" name="_csrf" value=csrfToken)
+            button(type='submit').button__clicked-off Remove
 
   h1 Want to Watch
   each show in wantToWatchShows
@@ -32,7 +37,7 @@ block content
             input(type="hidden" name="_csrf" value=csrfToken)
             button(type='submit').button__clicked-off Watched
           br
-          form(action=`/users/${locals.user.id}/remove` method='post')
+          form(action=`/users/${locals.user.id}/remove-want-to-watch` method='post')
             input(type="hidden" name="showId" value=show.id)
             input(type="hidden" name="_csrf" value=csrfToken)
             button(type='submit').button__clicked-off Remove

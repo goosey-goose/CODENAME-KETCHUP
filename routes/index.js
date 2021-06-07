@@ -62,7 +62,6 @@ router.post('/shows/:id/watched', asyncHandler(async (req, res) => {
   await db.WatchedList.create({
     showId,
     userId,
-    csrfToken: req.csrfToken()
   })
   res.redirect(`/shows/${showId}`)
 }));
