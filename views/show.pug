@@ -5,12 +5,14 @@ block content
 		.show__details-left
 			img(src=`${show.poster}` alt=`Poster for ${show.title}`).show__poster
 			form(action=`/shows/${show.id}/watched` method='post')
+				input(type="hidden" name="_csrf" value=csrfToken)
 				if watched
 					button(type='submit' disabled).button__clicked-on Watched
 				else
 					button(type='submit').button__clicked-off Watched
 			br
 			form(action=`/shows/${show.id}/want-to-watch` method='post')
+				input(type="hidden" name="_csrf" value=csrfToken)
 				if wantToWatch
 					button(type='submit' disabled).button__clicked-on Want To Watch
 				else
@@ -40,6 +42,7 @@ block content
 	hr
 	p
 	form(action=`/shows/${show.id}/reviews` method='get')
+		input(type="hidden" name="_csrf" value=csrfToken)
 		button(type='submit').review-btn Add Review
 	p.heading__title-show User Reviews:
 	each review in reviews
@@ -50,4 +53,5 @@ block content
 			p= `${review.User.userName} gave this show a ${review.userRating}/10🥫Ketchup Rating`
 			if review.userId === tempId
 				form(action=`/shows/${show.id}/reviews/${review.id}` method='get')
+					input(type="hidden" name="_csrf" value=csrfToken)
 					button(type='submit').review-btn Edit Review

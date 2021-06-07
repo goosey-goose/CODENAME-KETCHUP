@@ -56,19 +56,18 @@ router.get('/shows/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (
 }));
 
 /* Adds show to watched list */
-router.post('/shows/:id/watched', asyncHandler(async (req, res) => {
+router.post('/shows/:id/watched', csrfProtection, asyncHandler(async (req, res) => {
   const showId = parseInt(req.params.id, 10);
   const userId = res.locals.user.id;
   await db.WatchedList.create({
     showId,
     userId,
-    csrfToken: req.csrfToken()
   })
   res.redirect(`/shows/${showId}`)
 }));
 
 /* Adds show to want to watch list */
-router.post('/shows/:id/want-to-watch', asyncHandler(async (req, res) => {
+router.post('/shows/:id/want-to-watch', csrfProtection, asyncHandler(async (req, res) => {
   const showId = parseInt(req.params.id, 10);
   const userId = res.locals.user.id;
   await db.WantToWatchList.create({

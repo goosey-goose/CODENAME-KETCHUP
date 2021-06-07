@@ -38,7 +38,13 @@ router.get('/:id(\\d+)', requireAuth, restoreUser, csrfProtection, asyncHandler(
     where: { userId: id },
     include: { model: db.Show }
   })
-  res.render('user', { csrfToken: req.csrfToken(), watchedShows, wantToWatchShows, reviews });
+
+  const reviewedShowIds = [];
+  reviews.forEach((review) => {
+    reviewedShowIds.push(review.Show.id);
+  })
+
+  res.render('user', { csrfToken: req.csrfToken(), watchedShows, wantToWatchShows, reviews, reviewedShowIds });
 }));
 
 /* Adds show to watched list */
@@ -61,10 +67,24 @@ router.post('/:id(\\d+)/watched', csrfProtection, asyncHandler(async (req, res) 
 }));
 
 /* Removes show from want to watch list */
-router.post('/:id(\\d+)/remove', csrfProtection, asyncHandler(async (req, res) => {
+router.post('/:id(\\d+)/remove-want-to-watch', csrfProtection, asyncHandler(async (req, res) => {
   const { showId } = req.body
   const userId = res.locals.user.id;
   const removedShow = await db.WantToWatchList.findOne({
+    where: {
+      "showId": showId,
+      "userId": userId
+    }
+  })
+  await removedShow.destroy();
+  res.redirect(`/users/${userId}`)
+}));
+
+/* Removes show from wantched list */
+router.post('/:id(\\d+)/remove-watched', csrfProtection, asyncHandler(async (req, res) => {
+  const { showId } = req.body
+  const userId = res.locals.user.id;
+  const removedShow = await db.WatchedList.findOne({
     where: {
       "showId": showId,
       "userId": userId
