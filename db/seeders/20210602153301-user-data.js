@@ -10,7 +10,7 @@ module.exports = {
       [
         {
           userName: 'demo_user',
-          email: 'demo@example.com',
+          email: 'demoUser@example.com',
           bio: 'Welcome to ketchup, demo_user!',
           profilePicLink: 'https://cdn.fakercloud.com/avatars/kojourin_128.jpg',
           hashedPassword: bcrypt.hashSync(faker.internet.password()),
