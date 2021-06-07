@@ -13,8 +13,10 @@ block content
           p= `Release Date: ${show.releaseDate}`
           p= `Genre: ${show.genre}`
           p= `Plot: ${show.plot}`
-          form(action=`/shows/${show.id}/reviews` method='get')
-            button(type='submit').review-btn Add Review
+          - if (!reviewedShowIds.includes(show.id))
+            form(action=`/shows/${show.id}/reviews` method='get')
+              input(type="hidden" name="_csrf" value=csrfToken)
+              button(type='submit').review-btn Add Review
           br
           form(action=`/users/${locals.user.id}/remove-watched` method='post')
             input(type="hidden" name="showId" value=show.id)

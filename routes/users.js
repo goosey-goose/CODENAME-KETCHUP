@@ -38,7 +38,13 @@ router.get('/:id(\\d+)', requireAuth, restoreUser, csrfProtection, asyncHandler(
     where: { userId: id },
     include: { model: db.Show }
   })
-  res.render('user', { csrfToken: req.csrfToken(), watchedShows, wantToWatchShows, reviews });
+
+  const reviewedShowIds = [];
+  reviews.forEach((review) => {
+    reviewedShowIds.push(review.Show.id);
+  })
+
+  res.render('user', { csrfToken: req.csrfToken(), watchedShows, wantToWatchShows, reviews, reviewedShowIds });
 }));
 
 /* Adds show to watched list */
