@@ -136,7 +136,7 @@ router.post('/logout', (req, res) => {
 });
 
 router.post('/login-demo', asyncHandler(async (req, res) => {
-  const email = 'albus@example.com'; // demo user's email
+  const email = 'demo@example.com'; // demo user's email
   const user = await db.User.findOne({
     where: {
       email
